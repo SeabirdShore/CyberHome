@@ -34,13 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Command list - expose globally
     const commands = {
-        'about': {
-            description: 'About me',
-            action: showAbout
-        },
-        'contact': {
-            description: 'Contact information',
-            action: showContact
+        'ipython': {
+            description: 'Start a raw Python shell',
+            action: startIPython
         },
         'ls': {
             description: 'List available pages',
@@ -50,9 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Navigate to specified page',
             action: navigateToPage
         },
-        'ipython': {
-            description: 'Start raw Python shell',
-            action: startIPython
+        'about': {
+            description: 'About me',
+            action: showAbout
+        },
+        'contact': {
+            description: 'Contact information',
+            action: showContact
         },
         'whoami': {
             description: 'Show current user',
