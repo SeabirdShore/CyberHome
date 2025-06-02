@@ -1,0 +1,170 @@
+/* 终端视觉效果样式替代方案 */
+/* 将需要的效果复制到styles.css中的.terminal样式中 */
+
+/* 效果1：磨砂玻璃效果 */
+.terminal-glassmorphism {
+    background-color: rgba(18, 19, 20, 0.7) !important;
+    backdrop-filter: blur(10px) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 效果2：渐变边框 */
+.terminal-gradient-border {
+    background-color: #121314 !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6) !important;
+    border: none !important;
+    position: relative !important;
+}
+
+.terminal-gradient-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #4da6ff, #00ff66, #ff00a0, #4da6ff);
+    z-index: -1;
+    border-radius: 7px;
+    background-size: 400% 400%;
+    animation: gradientBorder 3s ease infinite;
+}
+
+@keyframes gradientBorder {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 效果3：像素风格边框 */
+.terminal-pixel-border {
+    background-color: #121314 !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6) !important;
+    border: 4px solid !important;
+    border-image: repeating-linear-gradient(45deg, #4da6ff, #4da6ff 8px, transparent 8px, transparent 16px) 4 !important;
+}
+
+/* 效果4：凸起的新拟物风格 */
+.terminal-neumorphism {
+    background: linear-gradient(145deg, #0e0f10, #1a1b1d) !important;
+    box-shadow: 5px 5px 10px #0a0a0b, -5px -5px 10px #1e1f21 !important;
+    border: none !important;
+}
+
+/* 效果5：CRT显示器效果 */
+.terminal-crt {
+    background-color: #121314 !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6) !important;
+    border: 2px solid #4da6ff !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.terminal-crt::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.terminal-crt::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(18, 16, 16, 0.1);
+    opacity: 0;
+    z-index: 999;
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+    0% { opacity: 0.27861; }
+    5% { opacity: 0.34769; }
+    10% { opacity: 0.23604; }
+    15% { opacity: 0.90626; }
+    20% { opacity: 0.18128; }
+    25% { opacity: 0.83891; }
+    30% { opacity: 0.65583; }
+    35% { opacity: 0.67807; }
+    40% { opacity: 0.26559; }
+    45% { opacity: 0.84693; }
+    50% { opacity: 0.96019; }
+    55% { opacity: 0.08594; }
+    60% { opacity: 0.20313; }
+    65% { opacity: 0.71988; }
+    70% { opacity: 0.53455; }
+    75% { opacity: 0.37288; }
+    80% { opacity: 0.71428; }
+    85% { opacity: 0.70419; }
+    90% { opacity: 0.7003; }
+    95% { opacity: 0.36108; }
+    100% { opacity: 0.24387; }
+}
+
+/* 效果6：纹理背景 */
+.terminal-textured {
+    background-color: #121314 !important;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%232d2d2d' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E") !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6) !important;
+    border: 2px solid #4da6ff !important;
+}
+
+/* 效果7：金属质感 */
+.terminal-metallic {
+    background: linear-gradient(135deg, #1a1c1e 0%, #121314 100%) !important;
+    box-shadow: 
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 0 rgba(0, 0, 0, 0.2),
+        0 5px 15px rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 效果8：霓虹边框 */
+.terminal-neon-border {
+    background-color: #121314 !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6) !important;
+    border: 3px solid #4da6ff !important;
+    position: relative !important;
+}
+
+.terminal-neon-border::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 1px solid #4da6ff;
+    border-radius: 7px;
+    filter: blur(5px);
+    opacity: 0.7;
+    z-index: -1;
+    animation: neonPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulse {
+    from { opacity: 0.5; filter: blur(5px); }
+    to { opacity: 1; filter: blur(7px); }
+}
+
+/* 使用方法：
+1. 将此CSS文件链接到HTML文件中
+2. 在终端div上添加所需的效果类名
+   例如：<div class="terminal terminal-crt">
+3. 或者通过JavaScript动态应用：
+   document.querySelector('.terminal').classList.add('terminal-glassmorphism');
+*/ 

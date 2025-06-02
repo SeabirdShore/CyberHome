@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sibo Xiao | Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="terminal-effects.css">
+    <link rel="icon" href="terminal-fill.svg" type="image/svg+xml">
+</head>
+<body>
+    <div class="terminal">
+        <div class="terminal-header">
+            <div class="buttons">
+                <div class="button minimize">−</div>
+                <div class="button maximize">□</div>
+            </div>
+            <div class="title">user@visitor:~</div>
+        </div>
+        <div class="terminal-content" id="terminal-content">
+            <pre id="ascii-art">
+     _______       __   ___         __________    ____      _____
+   _/ /__  /____ _/ /_ &lt;  /________/ / ____/ /_  / __ \____|__  /
+  / __//_ &lt;/ __ `/ __ \/ / ___/ __  /___ \/ __ \/ / / / ___//_ &lt; 
+ (_  )__/ / /_/ / /_/ / / /  / /_/ /___/ / / / / /_/ / /  ___/ / 
+/  _/____/\__,_/_.___/_/_/   \__,_/_____/_/ /_/\____/_/  /____/  
+                            /_/                                                                                          
+            </pre>
+            <div class="command-history" id="command-history"></div>
+            <div class="command-line">
+                <span class="prompt">user@visitor:~$</span>
+                <input type="text" id="command-input" autofocus autocomplete="off">
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="typewriter-background.js"></script>
+    <script src="terminal-effects.js"></script>
+</body>
+</html> 

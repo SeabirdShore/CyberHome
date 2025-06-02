@@ -1,0 +1,398 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+}
+
+body {
+    background-color: #121314;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.terminal {
+    width: calc(100% - 60px);
+    max-width: 900px;
+    height: calc(100vh - 60px);
+    margin: 30px;
+    background-color: #121314;
+    border-radius: 5px;
+    
+    /* 原始蓝色光晕阴影 */
+    /* box-shadow: 0 0 30px rgba(77, 166, 255, 0.2), 0 0 10px rgba(0, 0, 0, 0.6); */
+    
+    /* 方案1：经典黑色阴影（低调现代风格）*/
+    /* box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 5px 15px rgba(0, 0, 0, 0.7); */
+    
+    /* 方案2：绿色黑客风格 */
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.15), 0 0 10px rgba(0, 0, 0, 0.6);
+    
+    /* 方案3：霓虹紫效果 */
+    /* box-shadow: 0 0 30px rgba(140, 0, 255, 0.2), 0 0 10px rgba(0, 0, 0, 0.6); */
+    
+    /* 方案4：赛博朋克红橙渐变效果 */
+    /* box-shadow: 0 0 20px rgba(255, 50, 0, 0.2), 0 0 40px rgba(255, 165, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.6); */
+    
+    /* 方案5：暗色金属质感 */
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7), 0 0 15px rgba(120, 120, 120, 0.3), inset 0 0 10px rgba(0, 0, 0, 0.5); */
+    
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+    border: 2px solid #4da6ff; /* 这里也可以考虑改变边框颜色以匹配阴影 */
+}
+
+.terminal-header {
+    background-color: #1e2126;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    position: relative;
+    border-bottom: 1px solid #4da6ff;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+.button {
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
+    font-size: 12px;
+    color: #cccccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close {
+    background-color: transparent;
+}
+
+.minimize {
+    background-color: transparent;
+    display: none;
+}
+
+.maximize {
+    background-color: transparent;
+    display: none;
+}
+
+.title {
+    position: relative;
+    left: 0;
+    transform: none;
+    color: #cccccc;
+    font-size: 14px;
+    font-weight: bold;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.terminal-content {
+    flex: 1;
+    background-color: rgba(18, 19, 20, 0.95);
+    color: #f0f0f0;
+    padding: 15px;
+    overflow-y: auto;
+    font-size: 16px;
+    line-height: 0.92;
+    letter-spacing: -0.5px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.terminal-content::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+#ascii-art {
+    color: #4da6ff;
+    margin-bottom: 20px;
+    white-space: pre;
+    font-family: monospace;
+    text-align: center;
+    letter-spacing: -1px;
+    line-height: 1; /* 保持ASCII art的行高 */
+}
+
+.command-history {
+    margin-bottom: 10px;
+    line-height: 0.8; /* 减小非ASCII art部分的行高 */
+}
+
+.command-line {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 2px 0;
+}
+
+.prompt {
+    color: #4da6ff;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+#command-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #f8f8f8;
+    font-size: 16px;
+    flex: 1;
+    font-family: 'Courier New', monospace;
+    caret-color: #f8f8f8;
+}
+
+.output {
+    margin: 5px 0; /* 减小上下间距 */
+    white-space: pre-wrap;
+    letter-spacing: -0.5px;
+}
+
+.error {
+    color: #ff5252;
+}
+
+.info {
+    color: #4da6ff;
+}
+
+.success {
+    color: #4caf50;
+}
+
+/* 添加一个闪烁的光标效果 */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background-color: #f8f8f8;
+    animation: blink 1s step-end infinite;
+}
+
+/* 页面A的样式 */
+.page-a {
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .terminal {
+        height: 85vh;
+        max-width: 100%;
+    }
+    
+    #ascii-art {
+        font-size: 12px;
+    }
+    
+    .terminal-content {
+        font-size: 14px;
+    }
+}
+
+.interaction-group {
+    margin-bottom: 15px;
+    padding: 3px 0;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.interaction-group:hover {
+    background-color: rgba(77, 166, 255, 0.05);
+}
+
+/* 悬浮窗口样式 */
+.floating-window {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    max-width: 800px;
+    max-height: 80%;
+    background-color: #1e1f21;
+    border: 2px solid #4da6ff;
+    border-radius: 8px;
+    
+    /* 更新阴影效果以匹配终端 - 绿色黑客风格 */
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.5);
+    
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: scale(0.1);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.3s ease;
+}
+
+.floating-window.show {
+    transform: scale(1);
+    opacity: 1;
+    animation: windowAppear 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+@keyframes windowAppear {
+    0% {
+        transform: scale(0.1);
+        opacity: 0;
+    }
+    70% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.floating-window-header {
+    background-color: #1e2126;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    cursor: move;
+    border-bottom: 1px solid #4da6ff;
+    user-select: none;
+}
+
+.floating-window-title {
+    color: #f0f0f0;
+    font-size: 14px;
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+.floating-window-controls {
+    display: flex;
+    align-items: center;
+}
+
+.floating-window-control {
+    width: 14px;
+    height: 14px;
+    margin-left: 10px;
+    background-color: #ff5252;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1e1f21;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+}
+
+.floating-window-control:hover {
+    background-color: #ff6e6e;
+}
+
+.floating-window-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 响应式设计调整 */
+@media (max-width: 768px) {
+    .floating-window {
+        width: 90%;
+        max-height: 85%;
+        top: 5%;
+        left: 5%;
+    }
+}
+
+/* 打字机效果 */
+.typewriter-text {
+    overflow: hidden;
+    border-right: 2px solid #4da6ff;
+    white-space: nowrap;
+    margin: 0;
+    color: #4da6ff;
+    animation: blink-caret 0.75s step-end infinite;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.15em;
+    text-shadow: 0 0 5px rgba(77, 166, 255, 0.5);
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #4da6ff }
+}
+
+/* 悬浮窗口内容样式 */
+.floating-window-content h1 {
+    color: #4da6ff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.floating-window-content p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #f0f0f0;
+}
+
+.floating-window-content ul {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.floating-window-content ul li {
+    margin-bottom: 8px;
+    color: #f0f0f0;
+    position: relative;
+}
+
+.floating-window-content ul li::before {
+    content: "$ ";
+    color: #4da6ff;
+    position: absolute;
+    left: -20px;
+} 
