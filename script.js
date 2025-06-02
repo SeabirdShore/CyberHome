@@ -50,6 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Navigate to specified page',
             action: navigateToPage
         },
+        'ipython': {
+            description: 'Start raw Python shell',
+            action: startIPython
+        },
         'whoami': {
             description: 'Show current user',
             action: showWhoami
@@ -57,10 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'date': {
             description: 'Show current date and time',
             action: showDate
-        },
-        'ipython': {
-            description: 'Start interactive Python shell (Skulpt-based)',
-            action: startIPython
         },
         'theme': {
             description: 'Change terminal visual effect',
